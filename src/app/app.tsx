@@ -1,7 +1,13 @@
 import './app.css'
 
+import { CalculateOdds } from './components/calculate-odds'
+
 function App() {
-    return <></>
+    return (
+        <>
+            <CalculateOdds />
+        </>
+    )
 }
 
 export default App
