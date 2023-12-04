@@ -3,6 +3,8 @@ import { TextInput } from '../styles/text-input'
 import { ListInput } from '../styles/list-input'
 import { Button } from '../styles/button'
 
+import { ResultTable } from './result-table'
+
 import { Place, PlaceText } from '../styles/place'
 
 import { Inputs, places } from '../../context/calculate-odds'
@@ -54,8 +56,6 @@ export function CalculateOdds() {
                 }
             }))
         }
-
-        console.log(localData)
     }
 
     const handleChange = (field: string, value: any) => {
@@ -63,8 +63,6 @@ export function CalculateOdds() {
             ...prev,
             [field]: value
         }))
-
-        console.log(localData)
     }
 
     const handleChangeOdds = (value: any) => {
@@ -81,8 +79,12 @@ export function CalculateOdds() {
             ...prev,
             odds: value
         }))
+    }
 
-        console.log(localData)
+    const [result, setResult] = useState<any>(null)
+    const handleCalculate = async () => {
+        const { data, time, place, odds } = localData
+        setResult(await calculateOdds(data, odds, time, place))
     }
 
     return (
@@ -124,15 +126,17 @@ export function CalculateOdds() {
                 </>
             ))}
 
-            <Button
-                onClick={() => {
-                    calculateOdds(localData.data, localData.odds, localData.time, localData.place).then((res) => {
-                        console.log(res)
-                    })
-                }}
-            >
-                Calculate
-            </Button>
+            <Button onClick={handleCalculate}>Calculate</Button>
+
+            {!!result && (
+                <ResultTable
+                    data={result.map((item: any) => ({
+                        over: item.over,
+                        under: item.under,
+                        odd: item.odd
+                    }))}
+                />
+            )}
         </>
     )
 }
