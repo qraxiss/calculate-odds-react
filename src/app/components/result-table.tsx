@@ -31,3 +31,35 @@ export function ResultTable(props: ResultTableProps) {
         </Table>
     )
 }
+
+interface ResultTableV2Props {
+    data: { [key: string]: any }[]
+}
+
+export function ResultTableV2(props: ResultTableV2Props) {
+    const { data } = props
+
+    // Extract column names from the first item in the data array
+    const columns = Object.keys(data[0] || {})
+
+    return (
+        <Table>
+            <Thead>
+                <Tr>
+                    {columns.map((column, index) => (
+                        <Th key={index}>{column}</Th>
+                    ))}
+                </Tr>
+            </Thead>
+            <Tbody>
+                {data.map((item, rowIndex) => (
+                    <Tr key={rowIndex}>
+                        {columns.map((column, colIndex) => (
+                            <Td key={colIndex}>{item[column]}</Td>
+                        ))}
+                    </Tr>
+                ))}
+            </Tbody>
+        </Table>
+    )
+}
