@@ -3,7 +3,7 @@ import { TextInput } from '../styles/text-input'
 import { ListInput } from '../styles/list-input'
 import { Button } from '../styles/button'
 
-import { ResultTable, ResultTableV2 } from './result-table'
+import { ResultTable } from './result-table'
 import { CalculateResult } from './calculate-result'
 
 import { Place, PlaceText } from '../styles/place'

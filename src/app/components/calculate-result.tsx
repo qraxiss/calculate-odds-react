@@ -2,7 +2,6 @@ import { TextInput } from '../styles/text-input'
 import { Button } from '../styles/button'
 import { PlaceText, Place } from '../styles/place'
 
-import Switch from '../styles/checkbox'
 import { ResultTableV2 } from './result-table'
 
 import { useState } from 'react'
