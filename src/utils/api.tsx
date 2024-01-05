@@ -1,22 +1,19 @@
-import { axiosInstance } from '../config/config'
+import { Request,Result } from "../config/request";
 
+  
 export async function calculateOdds(
-    data: any,
-    odds: number[],
-    time: string,
-    place: string
-): Promise<
-    {
-        over: number
-        under: number
-        odd: number
-    }[]
-> {
-    const res = await axiosInstance.post('/calculate-odds', {
-        data,
-        odds,
-        time,
-        place
-    })
-    return res.data.result
+  data: any,
+  odds: number[],
+  time: string,
+  place: string
+): Promise<Result> {
+ 
+    return  await Request.post('/calculate-odds', {
+      data,
+      odds,
+      time,
+      place,
+    });
+ 
+  
 }
